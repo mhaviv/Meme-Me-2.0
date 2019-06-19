@@ -69,28 +69,8 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func textFieldTapRecognizer() {
-        var topTextFieldTap: UITapGestureRecognizer = UITapGestureRecognizer(target: topTextField, action: #selector(UITextFieldDelegate.textFieldDidBeginEditing(_:)))
-        var bottomTextFieldTap: UITapGestureRecognizer = UITapGestureRecognizer(target: bottomTextField, action: #selector(UITextFieldDelegate.textFieldDidBeginEditing(_:)))
-        
-        topTextFieldTap.cancelsTouchesInView = false
-        bottomTextFieldTap.cancelsTouchesInView = false
-        
-        if topTextField.isFirstResponder {
-            view.addGestureRecognizer(topTextFieldTap)
-        }
-        if bottomTextField.isFirstResponder{
-            view.addGestureRecognizer(bottomTextFieldTap)
-        }
-        if view.isFirstResponder {
-            topTextFieldTap = UITapGestureRecognizer(target: topTextField, action: #selector(UITextFieldDelegate.textFieldDidEndEditing(_:)))
-            bottomTextFieldTap = UITapGestureRecognizer(target: bottomTextField, action: #selector(UITextFieldDelegate.textFieldDidBeginEditing(_:)))
-        }
-    }
-    
     @objc func keyboardWillShow(_ notification:Notification) {
         print("Keyboard Show!")
-        textFieldTapRecognizer()
         if bottomTextField.isFirstResponder {
             self.view.frame.origin.y -= getKeyboardHeight(notification)
         }
@@ -98,8 +78,6 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     @objc func keyboardWillHide(_ notification:Notification) {
         print("Keyboard Hide!")
-        view.becomeFirstResponder()
-        textFieldTapRecognizer()
         self.view.frame.origin.y = 0
     }
     
@@ -129,11 +107,8 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     }
     
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
-        //        NSAttributedString.Key.strokeColor : UIColor.black,
-        
         NSAttributedString.Key.foregroundColor: UIColor.white,
         NSAttributedString.Key.font: UIFont(name: "impact", size: 28)!,
-        //        NSAttributedString.Key.strokeWidth:  3.0
     ]
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

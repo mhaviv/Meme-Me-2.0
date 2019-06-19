@@ -59,8 +59,16 @@
                                     <constraint firstItem="9HZ-Op-wAC" firstAttribute="leading" secondItem="EhK-wT-svS" secondAttribute="leading" id="qBE-B2-P4N"/>
                                 </constraints>
                             </view>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="gio-Jw-OfZ">
-                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhb-Df-d1l" userLabel="Top Toolbar">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="action" id="aKB-eb-dOQ"/>
+                                    <barButtonItem systemItem="flexibleSpace" id="k63-hN-fsO"/>
+                                    <barButtonItem systemItem="cancel" id="3hH-Pi-vnk"/>
+                                </items>
+                            </toolbar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="gio-Jw-OfZ" userLabel="Bottom Toolbar">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
                                     <barButtonItem title="Photos" id="09R-8M-AvJ" userLabel="Photos">
                                         <connections>
@@ -78,14 +86,17 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="zhb-Df-d1l" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="0lC-4X-Zam"/>
                             <constraint firstItem="9HZ-Op-wAC" firstAttribute="height" secondItem="IBL-ng-CR8" secondAttribute="height" id="5rx-9P-V2x"/>
                             <constraint firstItem="8LJ-fH-8TX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="C1a-v2-pgb"/>
                             <constraint firstItem="gio-Jw-OfZ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="CSG-13-SLh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EhK-wT-svS" secondAttribute="trailing" id="EvL-qq-BVl"/>
+                            <constraint firstItem="zhb-Df-d1l" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="H4m-yK-hfi"/>
                             <constraint firstItem="9HZ-Op-wAC" firstAttribute="width" secondItem="IBL-ng-CR8" secondAttribute="width" id="HUy-se-bkW"/>
                             <constraint firstAttribute="bottom" secondItem="84q-fk-kht" secondAttribute="bottom" id="Jq1-FN-RJk"/>
                             <constraint firstItem="84q-fk-kht" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="KpN-VS-bmC"/>
                             <constraint firstItem="8LJ-fH-8TX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ReH-W7-YI4"/>
+                            <constraint firstItem="zhb-Df-d1l" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="V4f-Cm-SdU"/>
                             <constraint firstItem="EhK-wT-svS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="V5Y-FE-vKC"/>
                             <constraint firstItem="EhK-wT-svS" firstAttribute="height" secondItem="8LJ-fH-8TX" secondAttribute="height" id="YEj-U6-Lov"/>
                             <constraint firstItem="84q-fk-kht" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bql-Ox-G27"/>
