@@ -62,15 +62,23 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhb-Df-d1l" userLabel="Top Toolbar">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="action" id="aKB-eb-dOQ"/>
+                                    <barButtonItem systemItem="action" id="aKB-eb-dOQ" userLabel="Share Button">
+                                        <connections>
+                                            <action selector="shareMeme:" destination="BYZ-38-t0r" id="bYL-ht-V62"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem systemItem="flexibleSpace" id="k63-hN-fsO"/>
-                                    <barButtonItem systemItem="cancel" id="3hH-Pi-vnk"/>
+                                    <barButtonItem systemItem="cancel" id="3hH-Pi-vnk">
+                                        <connections>
+                                            <action selector="cancelMeme:" destination="BYZ-38-t0r" id="BhT-ku-Ke1"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="gio-Jw-OfZ" userLabel="Bottom Toolbar">
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
-                                    <barButtonItem title="Photos" id="09R-8M-AvJ" userLabel="Photos">
+                                    <barButtonItem title="Album" id="09R-8M-AvJ" userLabel="Album">
                                         <connections>
                                             <action selector="pickAnImage:" destination="BYZ-38-t0r" id="nHu-ak-Rnq"/>
                                         </connections>
@@ -78,7 +86,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="S0Q-2a-grl"/>
                                     <barButtonItem systemItem="camera" id="jhN-DS-9Qe" userLabel="Camera">
                                         <connections>
-                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="Ad1-NN-qZw"/>
+                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="vMA-jy-b2j"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -110,13 +118,17 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="albumButton" destination="09R-8M-AvJ" id="wSN-QR-8WS"/>
                         <outlet property="bottomTextField" destination="9HZ-Op-wAC" id="5ah-Ow-Dps"/>
                         <outlet property="bottomTextFieldContainerView" destination="EhK-wT-svS" id="Wlo-ZP-sca"/>
+                        <outlet property="bottomToolbar" destination="gio-Jw-OfZ" id="hG3-A2-c3y"/>
                         <outlet property="cameraButton" destination="jhN-DS-9Qe" id="qHV-7D-BLU"/>
+                        <outlet property="cancelButton" destination="3hH-Pi-vnk" id="2jH-VV-VOu"/>
                         <outlet property="imagePickerView" destination="84q-fk-kht" id="g2i-an-jFB"/>
-                        <outlet property="photosButton" destination="09R-8M-AvJ" id="Gc0-An-Wy9"/>
+                        <outlet property="shareButton" destination="aKB-eb-dOQ" id="R1Y-fw-gPI"/>
                         <outlet property="topTextField" destination="IBL-ng-CR8" id="WfB-eQ-Gfn"/>
                         <outlet property="topTextFieldContainerView" destination="8LJ-fH-8TX" id="RA8-B9-8mp"/>
+                        <outlet property="topToolbar" destination="zhb-Df-d1l" id="ygw-AA-VTG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

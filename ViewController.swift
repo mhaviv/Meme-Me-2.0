@@ -12,12 +12,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var imagePickerView: UIImageView!
-    @IBOutlet weak var photosButton: UIBarButtonItem!
+    @IBOutlet weak var albumButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var topTextFieldContainerView: UIView!
     @IBOutlet weak var bottomTextFieldContainerView: UIView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
+    @IBOutlet weak var topToolbar: UIToolbar!
+    @IBOutlet weak var bottomToolbar: UIToolbar!
     let imagePicker = UIImagePickerController()
     let labelText = "Caption".uppercased()
     
@@ -123,6 +127,53 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         }
     }
     
+    @IBAction func cancelMeme(_ sender: Any) {
+        shareButton.isEnabled = false
+        imagePickerView.image = nil
+        topTextField.text = labelText
+        bottomTextField.text = labelText
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func shareMeme(_ sender: Any) {
+        let memeImage: UIImage = generateMemedImage()
+        let controller = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
+        controller.popoverPresentationController?.barButtonItem = shareButton
+        controller.completionWithItemsHandler = {( type, ok, items, error ) in
+            if ok {
+                self.saveMeme()
+            }
+        }
+        self.present(controller, animated: true, completion: nil)
+    }
+    
+    func generateMemedImage() -> UIImage {
+        
+        // Capture the entire screen as screenshot
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        // Create a rect from imageView container view bounds
+        let rect: CGRect = imagePickerView.bounds
+        let scale = memedImage.scale
+        let scaledRect = CGRect(x: imagePickerView.frame.origin.x * scale, y: imagePickerView.frame.origin.y * scale, width: rect.size.width * scale, height: rect.size.height * scale)
+        
+        // Crop captured screen with rect created above and return just the contents of the image container view
+        if let cgImage = memedImage.cgImage?.cropping(to: scaledRect) {
+            let temp: UIImage = UIImage(cgImage: cgImage, scale: scale, orientation: .up)
+            return temp
+        } else {
+            return memedImage
+        }
+    }
+    
+    func saveMeme() {
+        // Create the meme
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
+    }
+    
     @IBAction func pickAnImage(_ sender: Any) {
         imagePicker.sourceType = .photoLibrary
         imagePicker.mediaTypes = ["public.image", "public.movie"]
@@ -136,17 +187,5 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     }
     
 
-}
-
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
 }
 
