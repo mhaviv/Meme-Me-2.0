@@ -114,18 +114,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         NSAttributedString.Key.font: UIFont(name: "impact", size: 28)!,
     ]
     
-//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        setConstraintsForSize(size: size)
-//    }
-    
-//    func setConstraintsForSize(size:CGSize) {
-//        let tempBool = size.width > size.height ? true : false
-//        leadingConstraint.isActive = !tempBool
-//        trailingConstraint.isActive = !tempBool
-//        topConstraint.isActive = tempBool
-//        bottomConstraint.isActive = tempBool
-//    }
-    
+    // resizes the memeViewContainer to the inserted image size to align the label text fields
     func resizeViewToImage() {
         if let image = imagePickerView.image {
             let ratio = image.size.width / image.size.height
@@ -156,6 +145,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         }
     }
     
+    // resizes image again when returning to portrait
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         var text=""
         switch UIDevice.current.orientation{
@@ -165,16 +155,10 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         case .portraitUpsideDown:
             text="PortraitUpsideDown"
             resizeViewToImage()
-        case .landscapeLeft:
-            text="LandscapeLeft"
-//            resizeViewToImage()
-        case .landscapeRight:
-            text="LandscapeRight"
-//            resizeViewToImage()
         default:
             text="View Not Changed"
         }
-        NSLog("You have moved: \(text)")
+        print("You have moved: \(text)")
     }
     
     func defaultImageView() {
@@ -205,13 +189,13 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     func generateMemedImage() -> UIImage {
         
-        // Capture the entire screen as screenshot
+        // Capture the screen as screenshot
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        // Create a rect from imageView container view bounds
+        // Create a rect from imagePickerView containers view bounds
         let rect: CGRect = memeViewContainer.bounds
         let scale = memedImage.scale
         let scaledRect = CGRect(x: memeViewContainer.frame.origin.x * scale, y: memeViewContainer.frame.origin.y * scale, width: rect.size.width * scale, height: rect.size.height * scale)
@@ -227,6 +211,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     func saveMeme() {
         // Create the meme
+        // *meme struct will be used when expanding the app*
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
         defaultImageView()
     }
@@ -242,7 +227,5 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         imagePicker.mediaTypes = ["public.image", "public.movie"]
         present(imagePicker, animated: true, completion: nil)
     }
-    
-
 }
 
