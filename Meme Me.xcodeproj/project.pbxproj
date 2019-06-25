@@ -25,7 +25,7 @@
 		CCB90CF622B9B5D300AEAD06 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCB90CF722B9B5D300AEAD06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCB90CF822B9B5D300AEAD06 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CCDF81EC22BA5DC60043093E /* Meme Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meme Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCDF81EC22BA5DC60043093E /* Meme Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Meme Me.app"; path = "/Users/mhaviv/Desktop/Udacity-New/IOSND/learn-swift-programming-master/Projects/Meme Me - All/Meme Me/build/Debug-iphoneos/Meme Me.app"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +58,6 @@
 				CCB90CF422B9B5D300AEAD06 /* Main.storyboard */,
 				CCB90CF222B9B5D300AEAD06 /* LaunchScreen.storyboard */,
 				CCB90CEE22B9B5D300AEAD06 /* Info.plist */,
-				CCDF81EC22BA5DC60043093E /* Meme Me.app */,
 			);
 			sourceTree = "<group>";
 		};

@@ -16,14 +16,19 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
-    @IBOutlet weak var topTextFieldContainerView: UIView!
-    @IBOutlet weak var bottomTextFieldContainerView: UIView!
+    @IBOutlet weak var memeViewContainer: UIView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var topToolbar: UIToolbar!
     @IBOutlet weak var bottomToolbar: UIToolbar!
     let imagePicker = UIImagePickerController()
     let labelText = "Caption".uppercased()
+    
+    @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,16 +120,67 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         NSAttributedString.Key.font: UIFont(name: "impact", size: 28)!,
     ]
     
+//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//        setConstraintsForSize(size: size)
+//    }
+    
+//    func setConstraintsForSize(size:CGSize) {
+//        let tempBool = size.width > size.height ? true : false
+//        leadingConstraint.isActive = !tempBool
+//        trailingConstraint.isActive = !tempBool
+//        topConstraint.isActive = tempBool
+//        bottomConstraint.isActive = tempBool
+//    }
+    
+    func resizeViewToImage() {
+        if let image = imagePickerView.image {
+            let ratio = image.size.width / image.size.height
+            if memeViewContainer.frame.width > memeViewContainer.frame.height {
+                let newHeight = memeViewContainer.frame.width / ratio
+                imagePickerView.frame.size = CGSize(width: memeViewContainer.frame.width, height: newHeight)
+                print("Height: \(newHeight)")
+            }
+            else{
+                let newWidth = memeViewContainer.frame.height * ratio
+                imagePickerView.frame.size = CGSize(width: newWidth, height: memeViewContainer.frame.height)
+                print("Width: \(newWidth)")
+            }
+        }
+
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) || UIImagePickerController.isSourceTypeAvailable(.camera) {
             if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 imagePickerView.contentMode = .scaleAspectFit
                 imagePickerView.image = image
                 dismiss(animated: true, completion: nil)
+                resizeViewToImage()
             } else {
                 dismiss(animated: true, completion: nil)
             }
         }
+    }
+    
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        var text=""
+        switch UIDevice.current.orientation{
+        case .portrait:
+            text="Portrait"
+            resizeViewToImage()
+        case .portraitUpsideDown:
+            text="PortraitUpsideDown"
+            resizeViewToImage()
+        case .landscapeLeft:
+            text="LandscapeLeft"
+//            resizeViewToImage()
+        case .landscapeRight:
+            text="LandscapeRight"
+//            resizeViewToImage()
+        default:
+            text="View Not Changed"
+        }
+        NSLog("You have moved: \(text)")
     }
     
     @IBAction func cancelMeme(_ sender: Any) {
@@ -156,9 +212,9 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         UIGraphicsEndImageContext()
         
         // Create a rect from imageView container view bounds
-        let rect: CGRect = imagePickerView.bounds
+        let rect: CGRect = memeViewContainer.bounds
         let scale = memedImage.scale
-        let scaledRect = CGRect(x: imagePickerView.frame.origin.x * scale, y: imagePickerView.frame.origin.y * scale, width: rect.size.width * scale, height: rect.size.height * scale)
+        let scaledRect = CGRect(x: memeViewContainer.frame.origin.x * scale, y: memeViewContainer.frame.origin.y * scale, width: rect.size.width * scale, height: rect.size.height * scale)
         
         // Crop captured screen with rect created above and return just the contents of the image container view
         if let cgImage = memedImage.cgImage?.cropping(to: scaledRect) {
