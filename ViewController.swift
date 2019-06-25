@@ -11,24 +11,18 @@ import UIKit
 class ViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, UITextFieldDelegate {
     
-    @IBOutlet weak var imagePickerView: UIImageView!
-    @IBOutlet weak var albumButton: UIBarButtonItem!
-    @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var topToolbar: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var memeViewContainer: UIView!
+    @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
-    @IBOutlet weak var topToolbar: UIToolbar!
     @IBOutlet weak var bottomToolbar: UIToolbar!
+    @IBOutlet weak var albumButton: UIBarButtonItem!
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
     let imagePicker = UIImagePickerController()
     let labelText = "Caption".uppercased()
-    
-    @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var topConstraint: NSLayoutConstraint!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -183,11 +177,17 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         NSLog("You have moved: \(text)")
     }
     
-    @IBAction func cancelMeme(_ sender: Any) {
-        shareButton.isEnabled = false
+    func defaultImageView() {
         imagePickerView.image = nil
+        topTextField.resignFirstResponder()
+        bottomTextField.resignFirstResponder()
         topTextField.text = labelText
         bottomTextField.text = labelText
+    }
+    
+    @IBAction func cancelMeme(_ sender: Any) {
+        shareButton.isEnabled = false
+        defaultImageView()
         dismiss(animated: true, completion: nil)
     }
     
@@ -228,6 +228,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     func saveMeme() {
         // Create the meme
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
+        defaultImageView()
     }
     
     @IBAction func pickAnImage(_ sender: Any) {

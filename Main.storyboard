@@ -38,7 +38,7 @@
                                 </items>
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="gio-Jw-OfZ" userLabel="Bottom Toolbar">
-                                <rect key="frame" x="0.0" y="852" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Qlr-aU-R2A"/>
                                 </constraints>
@@ -97,7 +97,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.16470588235294117" green="0.38431372549019605" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="gio-Jw-OfZ" secondAttribute="bottom" id="02a-aG-kGu"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gio-Jw-OfZ" secondAttribute="bottom" id="02a-aG-kGu"/>
                             <constraint firstItem="zhb-Df-d1l" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="0lC-4X-Zam"/>
                             <constraint firstItem="Ju7-hN-lGJ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Bac-ki-6tc"/>
                             <constraint firstItem="gio-Jw-OfZ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="CSG-13-SLh"/>
@@ -114,19 +114,15 @@
                     </view>
                     <connections>
                         <outlet property="albumButton" destination="09R-8M-AvJ" id="wSN-QR-8WS"/>
-                        <outlet property="bottomConstraint" destination="R88-DQ-V8E" id="JW1-5e-wfS"/>
                         <outlet property="bottomTextField" destination="9HZ-Op-wAC" id="5ah-Ow-Dps"/>
                         <outlet property="bottomToolbar" destination="gio-Jw-OfZ" id="hG3-A2-c3y"/>
                         <outlet property="cameraButton" destination="jhN-DS-9Qe" id="qHV-7D-BLU"/>
                         <outlet property="cancelButton" destination="3hH-Pi-vnk" id="2jH-VV-VOu"/>
                         <outlet property="imagePickerView" destination="84q-fk-kht" id="g2i-an-jFB"/>
-                        <outlet property="leadingConstraint" destination="Eek-r9-IP4" id="pBW-Bx-XSu"/>
                         <outlet property="memeViewContainer" destination="Ju7-hN-lGJ" id="stC-yU-8Ef"/>
                         <outlet property="shareButton" destination="aKB-eb-dOQ" id="R1Y-fw-gPI"/>
-                        <outlet property="topConstraint" destination="i1d-zq-CP1" id="E6e-Ei-frg"/>
                         <outlet property="topTextField" destination="IBL-ng-CR8" id="WfB-eQ-Gfn"/>
                         <outlet property="topToolbar" destination="zhb-Df-d1l" id="ygw-AA-VTG"/>
-                        <outlet property="trailingConstraint" destination="gOJ-L4-tKI" id="Vkj-c6-7YG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
