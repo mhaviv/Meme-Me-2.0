@@ -45,13 +45,13 @@
                                 <items>
                                     <barButtonItem title="Album" id="09R-8M-AvJ" userLabel="Album">
                                         <connections>
-                                            <action selector="pickAnImage:" destination="BYZ-38-t0r" id="nHu-ak-Rnq"/>
+                                            <action selector="pickAnImage:" destination="BYZ-38-t0r" id="3MU-8v-gXg"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="S0Q-2a-grl"/>
                                     <barButtonItem systemItem="camera" id="jhN-DS-9Qe" userLabel="Camera">
                                         <connections>
-                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="vMA-jy-b2j"/>
+                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="lOX-IY-8H3"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -67,7 +67,7 @@
                                         <rect key="frame" x="0.0" y="25" width="414" height="17"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Caption" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9HZ-Op-wAC" userLabel="Bottom Text Field">
                                         <rect key="frame" x="0.0" y="372" width="414" height="17"/>
@@ -113,10 +113,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="albumButton" destination="09R-8M-AvJ" id="wSN-QR-8WS"/>
+                        <outlet property="albumButton" destination="09R-8M-AvJ" id="Xq0-Va-zxB"/>
                         <outlet property="bottomTextField" destination="9HZ-Op-wAC" id="5ah-Ow-Dps"/>
                         <outlet property="bottomToolbar" destination="gio-Jw-OfZ" id="hG3-A2-c3y"/>
-                        <outlet property="cameraButton" destination="jhN-DS-9Qe" id="qHV-7D-BLU"/>
+                        <outlet property="cameraButton" destination="jhN-DS-9Qe" id="hir-wl-h53"/>
                         <outlet property="cancelButton" destination="3hH-Pi-vnk" id="2jH-VV-VOu"/>
                         <outlet property="imagePickerView" destination="84q-fk-kht" id="g2i-an-jFB"/>
                         <outlet property="memeViewContainer" destination="Ju7-hN-lGJ" id="stC-yU-8Ef"/>
