@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CCF549F422B7C73700D520EF"
-               BuildableName = "Meme Me.app"
-               BlueprintName = "Meme Me"
-               ReferencedContainer = "container:Meme Me.xcodeproj">
+               BuildableName = "Meme Me 2.0.app"
+               BlueprintName = "Meme Me 2.0"
+               ReferencedContainer = "container:Meme Me 2.0.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CCF549F422B7C73700D520EF"
-            BuildableName = "Meme Me.app"
-            BlueprintName = "Meme Me"
-            ReferencedContainer = "container:Meme Me.xcodeproj">
+            BuildableName = "Meme Me 2.0.app"
+            BlueprintName = "Meme Me 2.0"
+            ReferencedContainer = "container:Meme Me 2.0.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CCF549F422B7C73700D520EF"
-            BuildableName = "Meme Me.app"
-            BlueprintName = "Meme Me"
-            ReferencedContainer = "container:Meme Me.xcodeproj">
+            BuildableName = "Meme Me 2.0.app"
+            BlueprintName = "Meme Me 2.0"
+            ReferencedContainer = "container:Meme Me 2.0.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CCF549F422B7C73700D520EF"
-            BuildableName = "Meme Me.app"
-            BlueprintName = "Meme Me"
-            ReferencedContainer = "container:Meme Me.xcodeproj">
+            BuildableName = "Meme Me 2.0.app"
+            BlueprintName = "Meme Me 2.0"
+            ReferencedContainer = "container:Meme Me 2.0.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

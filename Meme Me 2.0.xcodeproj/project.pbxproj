@@ -17,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC2CE20422C646F10077ECCE /* Meme Me 2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meme Me 2.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC98CFB722BC4C3000E929F1 /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		CCB90CEE22B9B5D300AEAD06 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCB90CF022B9B5D300AEAD06 /* impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = impact.ttf; sourceTree = "<group>"; };
@@ -25,7 +26,6 @@
 		CCB90CF622B9B5D300AEAD06 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCB90CF722B9B5D300AEAD06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCB90CF822B9B5D300AEAD06 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CCDF81EC22BA5DC60043093E /* Meme Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Meme Me.app"; path = "/Users/mhaviv/Desktop/Udacity-New/IOSND/learn-swift-programming-master/Projects/Meme Me - All/Meme Me/build/Debug-iphoneos/Meme Me.app"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,15 +58,16 @@
 				CCB90CF422B9B5D300AEAD06 /* Main.storyboard */,
 				CCB90CF222B9B5D300AEAD06 /* LaunchScreen.storyboard */,
 				CCB90CEE22B9B5D300AEAD06 /* Info.plist */,
+				CC2CE20422C646F10077ECCE /* Meme Me 2.0.app */,
 			);
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CCF549F422B7C73700D520EF /* Meme Me */ = {
+		CCF549F422B7C73700D520EF /* Meme Me 2.0 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CCF54A0722B7C73800D520EF /* Build configuration list for PBXNativeTarget "Meme Me" */;
+			buildConfigurationList = CCF54A0722B7C73800D520EF /* Build configuration list for PBXNativeTarget "Meme Me 2.0" */;
 			buildPhases = (
 				CCF549F122B7C73700D520EF /* Sources */,
 				CCF549F222B7C73700D520EF /* Frameworks */,
@@ -76,9 +77,9 @@
 			);
 			dependencies = (
 			);
-			name = "Meme Me";
+			name = "Meme Me 2.0";
 			productName = "Meme Me";
-			productReference = CCDF81EC22BA5DC60043093E /* Meme Me.app */;
+			productReference = CC2CE20422C646F10077ECCE /* Meme Me 2.0.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -97,7 +98,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CCF549F022B7C73700D520EF /* Build configuration list for PBXProject "Meme Me" */;
+			buildConfigurationList = CCF549F022B7C73700D520EF /* Build configuration list for PBXProject "Meme Me 2.0" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -111,7 +112,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CCF549F422B7C73700D520EF /* Meme Me */,
+				CCF549F422B7C73700D520EF /* Meme Me 2.0 */,
 			);
 		};
 /* End PBXProject section */
@@ -331,7 +332,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CCF549F022B7C73700D520EF /* Build configuration list for PBXProject "Meme Me" */ = {
+		CCF549F022B7C73700D520EF /* Build configuration list for PBXProject "Meme Me 2.0" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CCF54A0522B7C73800D520EF /* Debug */,
@@ -340,7 +341,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CCF54A0722B7C73800D520EF /* Build configuration list for PBXNativeTarget "Meme Me" */ = {
+		CCF54A0722B7C73800D520EF /* Build configuration list for PBXNativeTarget "Meme Me 2.0" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CCF54A0822B7C73800D520EF /* Debug */,
