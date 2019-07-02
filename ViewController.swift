@@ -118,18 +118,30 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     func resizeViewToImage() {
         if let image = imagePickerView.image {
             let ratio = image.size.width / image.size.height
-            if memeViewContainer.frame.width > memeViewContainer.frame.height {
-                let newHeight = memeViewContainer.frame.width / ratio
-                imagePickerView.frame.size = CGSize(width: memeViewContainer.frame.width, height: newHeight)
+            let memeViewContainerWidth = memeViewContainer.frame.width
+            let memeViewContainerHeight = memeViewContainer.frame.height
+            
+            if memeViewContainerWidth > memeViewContainerHeight {
+                let newHeight = memeViewContainerWidth / ratio
+                imagePickerView.frame.size = CGSize(width: memeViewContainerWidth, height: newHeight)
                 print("Height: \(newHeight)")
             }
-            else{
-                let newWidth = memeViewContainer.frame.height * ratio
-                imagePickerView.frame.size = CGSize(width: newWidth, height: memeViewContainer.frame.height)
+            
+            if memeViewContainerWidth < memeViewContainerHeight {
+                let newWidth = memeViewContainerHeight * ratio
+                imagePickerView.frame.size = CGSize(width: newWidth, height: memeViewContainerHeight)
                 print("Width: \(newWidth)")
             }
+            if memeViewContainerWidth == memeViewContainerHeight && image.size.width > image.size.height {
+                let newWidth = memeViewContainerHeight * ratio
+                imagePickerView.frame.size = CGSize(width: newWidth, height: memeViewContainerHeight)
+            }
+            if memeViewContainerWidth == memeViewContainerHeight && image.size.width < image.size.height {
+                //                let newHeight = memeViewContainerWidth / ratio
+                imagePickerView.frame.size = CGSize(width: memeViewContainerWidth, height: memeViewContainerHeight)
+            }
         }
-
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
