@@ -238,12 +238,14 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBAction func pickAnImage(_ sender: Any) {
         imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
         imagePicker.mediaTypes = ["public.image", "public.movie"]
         present(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
         imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = true
         imagePicker.mediaTypes = ["public.image", "public.movie"]
         present(imagePicker, animated: true, completion: nil)
     }
