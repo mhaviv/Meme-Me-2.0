@@ -32,6 +32,8 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         
         textFieldAttributes(textField: topTextField)
         textFieldAttributes(textField: bottomTextField)
+        
+        shareButton.isEnabled = false
                 
     }
     
@@ -149,6 +151,7 @@ UINavigationControllerDelegate, UITextFieldDelegate {
             if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 imagePickerView.contentMode = .scaleAspectFit
                 imagePickerView.image = image
+                shareButton.isEnabled = true
                 dismiss(animated: true, completion: nil)
                 resizeViewToImage()
             } else {
