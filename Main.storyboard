@@ -263,11 +263,11 @@
             </objects>
             <point key="canvasLocation" x="2188" y="3"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Table-->
         <scene sceneID="kqj-Fh-7Hc">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0A6-HA-MXz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="table" id="sEG-va-fPZ"/>
+                    <tabBarItem key="tabBarItem" title="Table" image="table" id="sEG-va-fPZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="e90-JE-xfZ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -282,11 +282,11 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="-368.30357142857139"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Collection-->
         <scene sceneID="eQg-gD-CGx">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uom-Ts-Ift" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="collection" id="32Y-5h-q4a"/>
+                    <tabBarItem key="tabBarItem" title="Collection" image="collection" id="32Y-5h-q4a"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RnQ-I6-Ut0">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
