@@ -9,14 +9,12 @@
 import Foundation
 import UIKit
 
-class MemeTableViewController: UITableViewController  {
+class SentMemesTableViewController: UITableViewController  {
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
