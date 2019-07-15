@@ -223,9 +223,14 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     func saveMeme() {
         // Create the meme
-        // *meme struct will be used when expanding the app*
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
-        defaultImageView()
+//        defaultImageView()
+        
+        // Add it to the memes array in the Application Delegate
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func pickAnImage(_ sender: Any) {
