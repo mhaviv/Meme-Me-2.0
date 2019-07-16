@@ -211,7 +211,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" red="0.74272932300000005" green="0.45634112059999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="9HZ-Op-wAC" firstAttribute="leading" secondItem="Ju7-hN-lGJ" secondAttribute="leading" id="1Ti-k2-89V"/>
                                     <constraint firstAttribute="bottom" secondItem="84q-fk-kht" secondAttribute="bottom" id="1dU-mM-dLb"/>
@@ -350,8 +350,8 @@
                         <viewLayoutGuide key="safeArea" id="xee-zI-PG6"/>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="A07-Yl-uMf"/>
                                 <exclude reference="80b-A0-Cg5"/>
+                                <exclude reference="A07-Yl-uMf"/>
                                 <exclude reference="AC3-Kd-7FS"/>
                             </mask>
                         </variation>

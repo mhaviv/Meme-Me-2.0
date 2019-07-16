@@ -135,12 +135,15 @@ UINavigationControllerDelegate, UITextFieldDelegate {
                 print("Width: \(newWidth)")
             }
             if memeViewContainerWidth == memeViewContainerHeight && image.size.width > image.size.height {
+                print("there!")
                 let newWidth = memeViewContainerHeight * ratio
                 imagePickerView.frame.size = CGSize(width: newWidth, height: memeViewContainerHeight)
             }
             if memeViewContainerWidth == memeViewContainerHeight && image.size.width < image.size.height {
-                //                let newHeight = memeViewContainerWidth / ratio
-                imagePickerView.frame.size = CGSize(width: memeViewContainerWidth, height: memeViewContainerHeight)
+                    print("here!")
+//                    imagePickerView.backgroundColor = UIColor.black
+//                    let newHeight = memeViewContainerWidth / ratio
+                    imagePickerView.frame.size = CGSize(width: memeViewContainerWidth, height: memeViewContainerHeight)
             }
         }
         
