@@ -19,8 +19,6 @@ class SentMemesCollectionViewController: UICollectionViewController {
         return appDelegate.memes
     }
     
-//    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     override func viewDidLoad() {
@@ -68,5 +66,20 @@ class SentMemesCollectionViewController: UICollectionViewController {
         let meme = memes[indexPath.row]
         cell.collectionImageView.image = meme.memedImage
         return cell
+    }
+    
+    //push the Detail View Controller when the meme is selected
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let controller = storyboard?.instantiateViewController(withIdentifier: "Detail") as! MemeDetailViewController
+        let meme = memes[indexPath.row]
+        controller.meme = meme
+        
+        //set the title of the back button
+        let backButton = UIBarButtonItem()
+        backButton.title = "Collection View"
+        navigationItem.backBarButtonItem = backButton
+        navigationController?.pushViewController(controller, animated: true)
+        
     }
 }
