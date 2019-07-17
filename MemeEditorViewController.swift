@@ -27,8 +27,6 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        topTextField.delegate = self
-        bottomTextField.delegate = self
         
         textFieldAttributes(textField: topTextField)
         textFieldAttributes(textField: bottomTextField)
@@ -38,16 +36,12 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     }
     
     func textFieldAttributes(textField: UITextField) {
-        topTextField.translatesAutoresizingMaskIntoConstraints = false
-        bottomTextField.translatesAutoresizingMaskIntoConstraints = false
-        topTextField.text = labelText
-        bottomTextField.text = labelText
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.textAlignment = .center
-        bottomTextField.textAlignment = .center
-        topTextField.backgroundColor = UIColor.clear
-        bottomTextField.backgroundColor = UIColor.clear
+        textField.delegate = self
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.text = labelText
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
+        textField.backgroundColor = UIColor.clear
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -239,18 +233,19 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func pickAnImage(_ sender: Any) {
-        imagePicker.sourceType = .photoLibrary
+    func presentImagePickerWith(sourceType: UIImagePickerController.SourceType) {
         imagePicker.allowsEditing = true
+        imagePicker.sourceType = sourceType
         imagePicker.mediaTypes = ["public.image", "public.movie"]
-        present(imagePicker, animated: true, completion: nil)
+        present(imagePicker, animated:true, completion:nil)
+    }
+    
+    @IBAction func pickAnImage(_ sender: Any) {
+        presentImagePickerWith(sourceType: UIImagePickerController.SourceType.photoLibrary)
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        imagePicker.sourceType = .camera
-        imagePicker.allowsEditing = true
-        imagePicker.mediaTypes = ["public.image", "public.movie"]
-        present(imagePicker, animated: true, completion: nil)
+        presentImagePickerWith(sourceType: UIImagePickerController.SourceType.camera)
     }
 }
 
