@@ -34,7 +34,7 @@
 		CCB90CF622B9B5D300AEAD06 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCB90CF722B9B5D300AEAD06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCB90CF822B9B5D300AEAD06 /* MemeEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeEditorViewController.swift; sourceTree = "<group>"; };
-		CCC0CFF022DCF7610004B7A7 /* Meme Me 2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meme Me 2.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCC0CFF022DCF7610004B7A7 /* Meme Me 2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Meme Me 2.0.app"; path = "/Users/mhaviv/Desktop/Udacity-New/IOSND/learn-swift-programming-master/Projects/Meme Me - All/Meme Me 2.0/build/Debug-iphoneos/Meme Me 2.0.app"; sourceTree = "<absolute>"; };
 		CCC0CFF122DD0E9F0004B7A7 /* MemeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,7 +73,6 @@
 				CCC0CFF122DD0E9F0004B7A7 /* MemeDetailViewController.swift */,
 				CCB90CF222B9B5D300AEAD06 /* LaunchScreen.storyboard */,
 				CCB90CEE22B9B5D300AEAD06 /* Info.plist */,
-				CCC0CFF022DCF7610004B7A7 /* Meme Me 2.0.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,7 +103,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Michael Haviv";
 				TargetAttributes = {
 					CCF549F422B7C73700D520EF = {
@@ -188,6 +187,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -249,6 +249,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

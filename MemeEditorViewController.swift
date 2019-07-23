@@ -145,8 +145,8 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) || UIImagePickerController.isSourceTypeAvailable(.camera) {
-            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                imagePickerView.contentMode = .scaleAspectFit
+            if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+                imagePickerView.contentMode = .scaleAspectFill
                 imagePickerView.image = image
                 shareButton.isEnabled = true
                 dismiss(animated: true, completion: nil)
