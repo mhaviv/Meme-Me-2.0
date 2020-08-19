@@ -8,8 +8,7 @@
 
 import UIKit
 
-class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate,
-UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController {
     
     @IBOutlet weak var topToolbar: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
@@ -21,75 +20,22 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     @IBOutlet weak var bottomToolbar: UIToolbar!
     @IBOutlet weak var albumButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    
     let imagePicker = UIImagePickerController()
     let labelText = "Caption".uppercased()
+    let memeTextAttributes: [NSAttributedString.Key: Any] = [
+        NSAttributedString.Key.foregroundColor: UIColor.white,
+        NSAttributedString.Key.font: UIFont(name: "impact", size: 28)!,
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imagePicker.delegate = self
         
         textFieldAttributes(textField: topTextField)
         textFieldAttributes(textField: bottomTextField)
         
         shareButton.isEnabled = false
                 
-    }
-    
-    func textFieldAttributes(textField: UITextField) {
-        textField.delegate = self
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.text = labelText
-        textField.defaultTextAttributes = memeTextAttributes
-        textField.textAlignment = .center
-        textField.backgroundColor = UIColor.clear
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.text == labelText {
-            textField.text = nil
-        }
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.text!.isEmpty {
-            textField.text = labelText
-        }
-    }
-    
-    func subscribeToKeyboardNotifications() {
-        print("subscribe")
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    func unsubscribeFromKeyboardNotifications() {
-        print("unsubscribe!")
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object:  nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    @objc func keyboardWillShow(_ notification:Notification) {
-        print("Keyboard Show!")
-        if bottomTextField.isFirstResponder {
-            self.view.frame.origin.y -= getKeyboardHeight(notification)
-        }
-    }
-    
-    @objc func keyboardWillHide(_ notification:Notification) {
-        print("Keyboard Hide!")
-        self.view.frame.origin.y = 0
-    }
-    
-    func getKeyboardHeight(_ notification:Notification) -> CGFloat {
-        
-        let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
-        return keyboardSize.cgRectValue.height
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,10 +51,34 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         unsubscribeFromKeyboardNotifications()
     }
     
-    let memeTextAttributes: [NSAttributedString.Key: Any] = [
-        NSAttributedString.Key.foregroundColor: UIColor.white,
-        NSAttributedString.Key.font: UIFont(name: "impact", size: 28)!,
-    ]
+    
+    func generateMemedImage() -> UIImage {
+        
+        // Capture the screen as screenshot
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        // Create a rect from imagePickerView containers view bounds
+        let rect: CGRect = memeViewContainer.bounds
+        let scale = memedImage.scale
+        let scaledRect = CGRect(x: memeViewContainer.frame.origin.x * scale, y: memeViewContainer.frame.origin.y * scale, width: rect.size.width * scale, height: rect.size.height * scale)
+        
+        // Crop captured screen with rect created above and return just the contents of the image container view
+        if let cgImage = memedImage.cgImage?.cropping(to: scaledRect) {
+            let temp: UIImage = UIImage(cgImage: cgImage, scale: scale, orientation: .up)
+            return temp
+        } else {
+            return memedImage
+        }
+    }
+    
+}
+
+// MARK: - UIImagePickerControllerDelegate
+
+extension MemeEditorViewController: UIImagePickerControllerDelegate {
     
     // resizes the memeViewContainer to the inserted image size to align the label text fields
     func resizeViewToImage() {
@@ -146,8 +116,8 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) || UIImagePickerController.isSourceTypeAvailable(.camera) {
             if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-                imagePickerView.contentMode = .scaleAspectFill
                 imagePickerView.image = image
+                imagePickerView.contentMode = .scaleAspectFill
                 shareButton.isEnabled = true
                 dismiss(animated: true, completion: nil)
                 resizeViewToImage()
@@ -181,6 +151,28 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         bottomTextField.text = labelText
     }
     
+    func presentImagePickerWith(sourceType: UIImagePickerController.SourceType) {
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = sourceType
+        imagePicker.mediaTypes = ["public.image", "public.movie"]
+        present(imagePicker, animated:true, completion:nil)
+    }
+    
+    @IBAction func pickAnImage(_ sender: Any) {
+        presentImagePickerWith(sourceType: UIImagePickerController.SourceType.photoLibrary)
+    }
+    
+    @IBAction func pickAnImageFromCamera(_ sender: Any) {
+        presentImagePickerWith(sourceType: UIImagePickerController.SourceType.camera)
+    }
+}
+
+
+
+// MARK: - UINavigationControllerDelegate
+
+extension MemeEditorViewController: UINavigationControllerDelegate {
     @IBAction func cancelMeme(_ sender: Any) {
         shareButton.isEnabled = false
         defaultImageView()
@@ -199,28 +191,6 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         self.present(controller, animated: true, completion: nil)
     }
     
-    func generateMemedImage() -> UIImage {
-        
-        // Capture the screen as screenshot
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        // Create a rect from imagePickerView containers view bounds
-        let rect: CGRect = memeViewContainer.bounds
-        let scale = memedImage.scale
-        let scaledRect = CGRect(x: memeViewContainer.frame.origin.x * scale, y: memeViewContainer.frame.origin.y * scale, width: rect.size.width * scale, height: rect.size.height * scale)
-        
-        // Crop captured screen with rect created above and return just the contents of the image container view
-        if let cgImage = memedImage.cgImage?.cropping(to: scaledRect) {
-            let temp: UIImage = UIImage(cgImage: cgImage, scale: scale, orientation: .up)
-            return temp
-        } else {
-            return memedImage
-        }
-    }
-    
     func saveMeme() {
         // Create the meme
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
@@ -232,20 +202,77 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         appDelegate.memes.append(meme)
         dismiss(animated: true, completion: nil)
     }
+}
+
+
+
+// MARK: - UITextFieldDelegate
+
+extension MemeEditorViewController: UITextFieldDelegate {
     
-    func presentImagePickerWith(sourceType: UIImagePickerController.SourceType) {
-        imagePicker.allowsEditing = true
-        imagePicker.sourceType = sourceType
-        imagePicker.mediaTypes = ["public.image", "public.movie"]
-        present(imagePicker, animated:true, completion:nil)
+    func textFieldAttributes(textField: UITextField) {
+        textField.delegate = self
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.text = labelText
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
+        textField.backgroundColor = UIColor.clear
     }
     
-    @IBAction func pickAnImage(_ sender: Any) {
-        presentImagePickerWith(sourceType: UIImagePickerController.SourceType.photoLibrary)
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.text == labelText {
+            textField.text = nil
+        }
     }
     
-    @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        presentImagePickerWith(sourceType: UIImagePickerController.SourceType.camera)
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.text!.isEmpty {
+            textField.text = labelText
+        }
+    }
+    
+    
+}
+
+
+// MARK: - Keyboard Subscriptions and Functionality
+
+extension MemeEditorViewController {
+    
+    func subscribeToKeyboardNotifications() {
+        print("subscribe")
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func unsubscribeFromKeyboardNotifications() {
+        print("unsubscribe!")
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object:  nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ notification:Notification) {
+        print("Keyboard Show!")
+        if bottomTextField.isFirstResponder {
+            self.view.frame.origin.y -= getKeyboardHeight(notification)
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification:Notification) {
+        print("Keyboard Hide!")
+        self.view.frame.origin.y = 0
+    }
+    
+    func getKeyboardHeight(_ notification:Notification) -> CGFloat {
+        
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.cgRectValue.height
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 }
 

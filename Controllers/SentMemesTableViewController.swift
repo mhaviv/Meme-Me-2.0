@@ -33,22 +33,6 @@ class SentMemesTableViewController: UITableViewController  {
         return memes.count
     }
     
-    func showEmptyView(_ show: Bool) {
-        if show {
-            let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height))
-            label.numberOfLines = 2
-            label.textAlignment = .center
-            label.text = "No Memes Stored!\nClick '+' to create a new Meme."
-            tableView.separatorStyle = .none
-            tableView.backgroundView = label
-            navigationItem.leftBarButtonItem = nil
-        } else {
-            tableView.backgroundView = nil
-            tableView.separatorStyle = .singleLine
-            navigationItem.leftBarButtonItem = editButtonItem
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! SentMemesTableViewCell
         let meme = memes[indexPath.row]
@@ -63,7 +47,6 @@ class SentMemesTableViewController: UITableViewController  {
         return true
     }
     
-
     
     //push the detail view controller when the meme is selected
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -77,5 +60,21 @@ class SentMemesTableViewController: UITableViewController  {
         backButton.title = "Table View Controller"
         navigationItem.backBarButtonItem = backButton
         navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func showEmptyView(_ show: Bool) {
+        if show {
+            let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.height))
+            label.numberOfLines = 2
+            label.textAlignment = .center
+            label.text = "No Memes Stored!\nClick '+' to create a new Meme."
+            tableView.separatorStyle = .none
+            tableView.backgroundView = label
+            navigationItem.leftBarButtonItem = nil
+        } else {
+            tableView.backgroundView = nil
+            tableView.separatorStyle = .singleLine
+            navigationItem.leftBarButtonItem = editButtonItem
+        }
     }
 }
